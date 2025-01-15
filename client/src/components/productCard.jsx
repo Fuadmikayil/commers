@@ -1,13 +1,15 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 const ProductCard = ({item}) => {
+  
   return (
-    <div className="cursor-pointer">
+    <Link to={`/products/${item.documentId}`} className="cursor-pointer" >
       <div className="bg-neutralWhite-100 flex items-center justify-center">
-        <img src={item.img} alt="" />
+        <img src={`http://localhost:1337${item.images[0].url}`} alt="" />
       </div>
       <h3 className="mt-6 mb-3 text-neutral-900 text-sm font-medium">
-        {item.title}
+        {item.name}
       </h3>
       <div className="flex items-center gap-4">
         <p
@@ -19,7 +21,7 @@ const ProductCard = ({item}) => {
         </p>
         <p className="text-neutral-600 text-sm">$ {item.price}</p>
       </div>
-    </div>
+    </Link>
   );
 }
 

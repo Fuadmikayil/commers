@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "../components/footer";
 import Header from "../components/header";
 import PopularProducts from "../components/popularProducts";
@@ -11,9 +11,20 @@ import minusIcon from "../assets/icons/global/Minus.svg";
 import heartIcon from "../assets/icons/global/Heart.svg";
 import emptyStarIcon from "../assets/icons/global/EmptyStar.svg";
 import moreIcon from "../assets/icons/global/More.svg";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useParams } from "react-router-dom";
 
 const ProductDetail = () => {
+  const {documentId} = useParams()
+  const [product, setProduct] = useState([]);
+
+  const getProductDetail = async () => {
+    const res = await fetch(`http://localhost:1337/api/porducts/${documentId}?populate=*`);
+    const { data } = await res.json();
+    setProduct(data);
+  };
+  useEffect(() => {
+    getProductDetail();
+  }, []);
   return (
     <>
       <Header />
@@ -31,7 +42,7 @@ const ProductDetail = () => {
         <div className="flex-1 pt-4">
           <div className="flex items-center justify-between mb-3">
             <h2 className="text-neutral-900 font-bold text-2xl">
-              Raw Black T-Shirt Lineup
+              {product?.name}
             </h2>
             <img src={shareIcon} alt="" />
           </div>
@@ -45,7 +56,8 @@ const ProductDetail = () => {
             </p>
           </div>
           <h3 className="text-neutral-900 font-semibold text-lg mb-8">
-            $75.00
+            {product?.price}$
+
           </h3>
           <p className="text-neutral-500 text-[12px] font-medium uppercase mb-[10px]">
             Available Colors
@@ -140,12 +152,12 @@ const ProductDetail = () => {
         <Outlet />
       </section>
 
-      <PopularProducts
+      {/*  <PopularProducts
         title="You might also like"
         subtitle="SIMILAR PRODUCTS"
         textAlign="left"
         products={products}
-      />
+      />*/}
       <Footer />
     </>
   );

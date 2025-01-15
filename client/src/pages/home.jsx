@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TopAds from "../components/topAds";
 import Header from "../components/header";
 import Hero from "../components/hero";
@@ -14,12 +14,22 @@ import Footer from "../components/footer";
 import PopularProducts from "../components/popularProducts";
 
 const HomePage = () => {
+  const [products, setProducts] = useState([]);
+
+  const getData = async () => {
+    const res = await fetch("http://localhost:1337/api/porducts?populate=*");
+    const { data } = await res.json();
+    setProducts(data)
+  };
+  useEffect(() => {
+    getData();
+  }, []);
   return (
     <>
       <TopAds
         text="Get 25% OFF on your first order."
         btnText="Order Now!"
-        btnHref="asdsd"
+        btnHref=""
       />
       <Header />
       <Hero
@@ -44,7 +54,6 @@ const HomePage = () => {
         textAlign="center"
         products={products}
       />
-
       <Hero
         title="Browse Our Fashion Paradise!"
         subtitle="Step into a world of style and explore our diverse collection of clothing categories."
