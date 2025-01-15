@@ -25,7 +25,7 @@ const HomePage = () => {
       <Hero
         title="Fresh Arrivals Online"
         subtitle="Discover Our Newest Collection Today."
-        btnText="View Collection"
+        btnText="View Collaection"
         btnHref=""
         img={heroImgOnline}
       />
