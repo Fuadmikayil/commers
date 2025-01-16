@@ -1,17 +1,17 @@
-import React from 'react';
-import Footer from '../components/footer';
-import Header from '../components/header';
-import PopularProducts from '../components/popularProducts';
-import { products } from '../data/products';
-import demoImg from '../assets/images/products/img.png';
-import shareIcon from '../assets/icons/global/Share.svg';
-import starIcon from '../assets/icons/global/Star.svg';
-import addIcon from '../assets/icons/global/Add.svg';
-import minusIcon from '../assets/icons/global/Minus.svg';
-import heartIcon from '../assets/icons/global/Heart.svg';
-import emptyStarIcon from '../assets/icons/global/EmptyStar.svg';
-import moreIcon from '../assets/icons/global/More.svg';
-import { NavLink, Outlet } from 'react-router-dom';
+import React from "react";
+import Footer from "../components/footer";
+import Header from "../components/header";
+import PopularProducts from "../components/popularProducts";
+import { products } from "../data/products";
+import demoImg from "../assets/images/products/img.png";
+import shareIcon from "../assets/icons/global/Share.svg";
+import starIcon from "../assets/icons/global/Star.svg";
+import addIcon from "../assets/icons/global/Add.svg";
+import minusIcon from "../assets/icons/global/Minus.svg";
+import heartIcon from "../assets/icons/global/Heart.svg";
+import emptyStarIcon from "../assets/icons/global/EmptyStar.svg";
+import moreIcon from "../assets/icons/global/More.svg";
+import { NavLink, Outlet } from "react-router-dom";
 
 const ProductDetail = () => {
   return (
@@ -118,7 +118,7 @@ const ProductDetail = () => {
             end
             className={({ isActive }) =>
               `py-2 px-6 w-full flex gap-[10px] items-center ${
-                isActive ? 'bg-neutralWhite-100' : 'bg-transparent'
+                isActive ? "bg-neutralWhite-100" : "bg-transparent"
               } rounded-lg`
             }
           >
@@ -129,7 +129,7 @@ const ProductDetail = () => {
             to="reviews"
             className={({ isActive }) =>
               `py-2 px-6 w-full flex gap-[10px] items-center ${
-                isActive ? 'bg-neutralWhite-100' : 'bg-transparent'
+                isActive ? "bg-neutralWhite-100" : "bg-transparent"
               } rounded-lg`
             }
           >

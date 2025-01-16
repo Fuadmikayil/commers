@@ -5,7 +5,7 @@ export default {
     extend: {
       container: {
         center: true,
-        padding: '0.75rem'
+        padding: '2rem'
       },
       fontSize: {
         '3xl': '2rem',
