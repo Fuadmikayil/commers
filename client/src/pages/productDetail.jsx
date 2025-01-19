@@ -57,7 +57,7 @@ const ProductDetail = () => {
           <div className="flex items-center gap-2 absolute bottom-8 left-[50%] translate-x-[-50%]">
             {
               product.images.map((img, index) => {
-                return(<button  key={index} className="cursor-pointer w-[10px] h-[10px] bg-neutral-600 rounded-full"></button> )
+                return(<button onClick={()=> setImgCounter(index)} key={index} className="cursor-pointer w-[10px] h-[10px] bg-neutral-600 rounded-full"></button> )
 
               })
             }
