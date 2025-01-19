@@ -3,8 +3,6 @@ import TopAds from "../components/topAds";
 import Header from "../components/header";
 import Hero from "../components/hero";
 import FeatureCard from "../components/featureCard";
-import { features } from "../data/features";
-import { products } from "../data/products";
 
 import heroImgOnline from "../assets/images/heroImgOnline.svg";
 import heroImgFashion from "../assets/images/heroImgFashion.svg";
@@ -12,18 +10,35 @@ import heroImgFashion from "../assets/images/heroImgFashion.svg";
 import ProductCard from "../components/productCard";
 import Footer from "../components/footer";
 import PopularProducts from "../components/popularProducts";
+import { getData } from "../hooks/useFetch";
 
 const HomePage = () => {
-  const [products, setProducts] = useState([]);
-
-  const getData = async () => {
-    const res = await fetch("http://localhost:1337/api/porducts?populate=*");
-    const { data } = await res.json();
-    setProducts(data)
-  };
-  useEffect(() => {
-    getData();
-  }, []);
+  const homePageQuery = `
+ {
+  products {
+    documentId
+    name
+    detail
+    category
+    beforePrice
+    images {
+      url
+    }
+  }
+  features {
+    icon {
+      url
+    }
+    documentId
+    subtitle
+    title
+  }
+}`;
+  const { loading, data, error } = getData(homePageQuery);
+  if (loading) return <h1>loading</h1>;
+  if (error) return <h1>error</h1>;
+  const { products,features } = data;
+  
   return (
     <>
       <TopAds

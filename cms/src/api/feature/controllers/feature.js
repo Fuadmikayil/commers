@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * porduct controller
+ * feature controller
  */
 
 const { createCoreController } = require('@strapi/strapi').factories;
 
-module.exports = createCoreController('api::porduct.porduct');
+module.exports = createCoreController('api::feature.feature');

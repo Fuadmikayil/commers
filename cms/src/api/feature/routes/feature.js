@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * porduct router
+ * feature router
  */
 
 const { createCoreRouter } = require('@strapi/strapi').factories;
 
-module.exports = createCoreRouter('api::porduct.porduct');
+module.exports = createCoreRouter('api::feature.feature');

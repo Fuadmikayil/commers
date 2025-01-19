@@ -12,31 +12,55 @@ import heartIcon from "../assets/icons/global/Heart.svg";
 import emptyStarIcon from "../assets/icons/global/EmptyStar.svg";
 import moreIcon from "../assets/icons/global/More.svg";
 import { NavLink, Outlet, useParams } from "react-router-dom";
+import { getData } from "../hooks/useFetch";
 
 const ProductDetail = () => {
-  const {documentId} = useParams()
-  const [product, setProduct] = useState([]);
+  const [imgCounter, setImgCounter] = useState(0);
+  const { documentId } = useParams();
+  const productDetailPageQuery = `query($id: ID!) {
+  product(documentId: $id) {
+    documentId
+    name
+    price
+    beforePrice
+    detail
+    category
+    info
+    sellCount
+    genderFor
+    images {
+      url
+    }
+    reviews {
+      review
+      stars
+      author
+      createdAt
+    }
+  }
+}`;
 
-  const getProductDetail = async () => {
-    const res = await fetch(`http://localhost:1337/api/porducts/${documentId}?populate=*`);
-    const { data } = await res.json();
-    setProduct(data);
-  };
-  useEffect(() => {
-    getProductDetail();
-  }, []);
+  const { loading, data, error } = getData(productDetailPageQuery, {
+    id: documentId,
+  });
+  if (loading) return <h1>loading</h1>;
+  if (error) return <h1>error</h1>;
+  const { product } = data;
+ 
   return (
     <>
       <Header />
 
       <section className="container flex gap-28 mb-44">
         <div className="relative flex-1 flex items-center justify-center bg-neutralWhite-100 h-[600px]">
-          <img className="max-w-[90%] max-h-[90%]" src={demoImg} alt="" />
+          <img className="max-w-[90%] max-h-[90%]" src={`http://localhost:1337${product.images[imgCounter].url}`} alt="" />
           <div className="flex items-center gap-2 absolute bottom-8 left-[50%] translate-x-[-50%]">
-            <button className="cursor-pointer w-[10px] h-[10px] bg-neutral-900 rounded-full"></button>
-            <button className="cursor-pointer w-[10px] h-[10px] bg-neutral-200 rounded-full"></button>
-            <button className="cursor-pointer w-[10px] h-[10px] bg-neutral-200 rounded-full"></button>
-            <button className="cursor-pointer w-[10px] h-[10px] bg-neutral-200 rounded-full"></button>
+            {
+              product.images.map((img, index) => {
+                return(<button  key={index} className="cursor-pointer w-[10px] h-[10px] bg-neutral-600 rounded-full"></button> )
+
+              })
+            }
           </div>
         </div>
         <div className="flex-1 pt-4">
@@ -57,7 +81,6 @@ const ProductDetail = () => {
           </div>
           <h3 className="text-neutral-900 font-semibold text-lg mb-8">
             {product?.price}$
-
           </h3>
           <p className="text-neutral-500 text-[12px] font-medium uppercase mb-[10px]">
             Available Colors

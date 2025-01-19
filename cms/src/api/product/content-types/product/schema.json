@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "porducts",
+  "collectionName": "products",
   "info": {
-    "singularName": "porduct",
-    "pluralName": "porducts",
-    "displayName": "Porduct",
+    "singularName": "product",
+    "pluralName": "products",
+    "displayName": "Product",
     "description": ""
   },
   "options": {
@@ -78,7 +78,7 @@
       "enum": [
         "hat",
         "belt",
-        "trosers",
+        "trousers",
         "shirt",
         "skirt",
         "shoes",
@@ -103,12 +103,6 @@
       },
       "type": "integer"
     },
-    "review": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::review.review",
-      "inversedBy": "porducts"
-    },
     "detail": {
       "pluginOptions": {
         "i18n": {
@@ -116,6 +110,12 @@
         }
       },
       "type": "richtext"
+    },
+    "reviews": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::review.review",
+      "mappedBy": "product"
     }
   }
 }

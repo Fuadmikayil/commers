@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 
 const ProductCard = ({item}) => {
-  
+
   return (
     <Link to={`/products/${item.documentId}`} className="cursor-pointer" >
       <div className="bg-neutralWhite-100 flex items-center justify-center">
