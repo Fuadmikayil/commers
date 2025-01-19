@@ -50,20 +50,29 @@ const ProductDetail = () => {
     return acc + review.stars;
   }, 0);
   let reviewStartAverage = (sumOfStars / product.reviews.length).toFixed(2);
+  console.log(product.info);
+  
   return (
     <>
       <Header />
 
       <section className="container flex gap-28 mb-44">
         <div className="relative flex-1 flex items-center justify-center bg-neutralWhite-100 h-[600px]">
-          <img className="max-w-[90%] max-h-[90%]" src={`http://localhost:1337${product.images[imgCounter].url}`} alt="" />
+          <img
+            className="max-w-[90%] max-h-[90%]"
+            src={`http://localhost:1337${product.images[imgCounter].url}`}
+            alt=""
+          />
           <div className="flex items-center gap-2 absolute bottom-8 left-[50%] translate-x-[-50%]">
-            {
-              product.images.map((img, index) => {
-                return(<button onClick={()=> setImgCounter(index)} key={index} className="cursor-pointer w-[10px] h-[10px] bg-neutral-600 rounded-full"></button> )
-
-              })
-            }
+            {product.images.map((img, index) => {
+              return (
+                <button
+                  onClick={() => setImgCounter(index)}
+                  key={index}
+                  className="cursor-pointer w-[10px] h-[10px] bg-neutral-600 rounded-full"
+                ></button>
+              );
+            })}
           </div>
         </div>
         <div className="flex-1 pt-4">
@@ -82,42 +91,44 @@ const ProductDetail = () => {
               IN STOCK
             </p>
           </div>
-          <h3 className="text-neutral-900 font-semibold text-lg mb-8">
-            {product?.price}$
+          <h3 className="text-neutral-900 font-semibold text-lg mb-8 tracking-wider">
+            {product?.price}${" "}
+            <del className="text-neutral-300 text-sm">
+              {product?.beforePrice}$
+            </del>
           </h3>
           <p className="text-neutral-500 text-[12px] font-medium uppercase mb-[10px]">
             Available Colors
           </p>
           <div className="flex gap-[10px] items-center mb-6">
-            <div className="cursor-pointer relative rounded-full w-8 h-8 border border-neutral-900 hover:border-neutral-300 transition">
-              <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] rounded-full w-6 h-6 bg-[#A3BEF8]"></div>
-            </div>
-            <div className="cursor-pointer relative rounded-full w-8 h-8 border border-transparent hover:border-neutral-300 transition">
-              <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] rounded-full w-6 h-6 bg-[#FFD58A]"></div>
-            </div>
-            <div className="cursor-pointer relative rounded-full w-8 h-8 border border-transparent hover:border-neutral-300 transition">
-              <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] rounded-full w-6 h-6 bg-[#83B18B]"></div>
-            </div>
+            {product.info.map((item, index) => {
+              return (
+                <div
+                  key={index}
+                  className="cursor-pointer relative rounded-full w-8 h-8 border border-neutral-900 hover:border-neutral-300 transition"
+                >
+                  <div
+                    style={{ backgroundColor: `#${item.color}` }}
+                    className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] rounded-full w-6 h-6 "
+                  ></div>
+                </div>
+              );
+            })}
           </div>
           <p className="text-neutral-500 text-[12px] font-medium uppercase mb-[10px]">
             Select Size
           </p>
           <div className="flex gap-2 mb-8">
-            <p className="hover:bg-neutralWhite-100 transition cursor-pointer w-10 h-10 flex items-center justify-center border border-neutral-900 uppercase rounded text-[12px] font-medium text-neutral-900">
-              XS
-            </p>
-            <p className="hover:bg-neutralWhite-100 transition cursor-pointer w-10 h-10 flex items-center justify-center border border-neutral-100 uppercase rounded text-[12px] font-medium text-neutral-500">
-              S
-            </p>
-            <p className="hover:bg-neutralWhite-100 transition cursor-pointer w-10 h-10 flex items-center justify-center border border-neutral-100 uppercase rounded text-[12px] font-medium text-neutral-500">
-              M
-            </p>
-            <p className="hover:bg-neutralWhite-100 transition cursor-pointer w-10 h-10 flex items-center justify-center border border-neutral-100 uppercase rounded text-[12px] font-medium text-neutral-500">
-              L
-            </p>
-            <p className="hover:bg-neutralWhite-100 transition cursor-pointer w-10 h-10 flex items-center justify-center border border-neutral-100 uppercase rounded text-[12px] font-medium text-neutral-500">
-              XL
-            </p>
+            {product.info[0].sizes.map((item, index) => {
+              return (
+                <p
+                  key={index}
+                  className="hover:bg-neutralWhite-100 transition cursor-pointer w-10 h-10 flex items-center justify-center border border-neutral-900 uppercase rounded text-[12px] font-medium text-neutral-900"
+                >
+              {  item.name}
+                </p>
+              );
+            })}
           </div>
           <p className="text-neutral-500 text-[12px] font-medium uppercase mb-[10px]">
             Quantity
