@@ -46,7 +46,10 @@ const ProductDetail = () => {
   if (loading) return <h1>loading</h1>;
   if (error) return <h1>error</h1>;
   const { product } = data;
- 
+  let sumOfStars = product.reviews.reduce((acc, review) => {
+    return acc + review.stars;
+  }, 0);
+  let reviewStartAverage = (sumOfStars / product.reviews.length).toFixed(2);
   return (
     <>
       <Header />
@@ -73,7 +76,7 @@ const ProductDetail = () => {
           <div className="flex gap-2 item-center mb-6">
             <p className="bg-neutralWhite-100 rounded-full px-4 py-[2px] flex items-center gap-2">
               <img src={starIcon} alt="" />
-              4.2 — 54 Reviews
+              {reviewStartAverage} — {product?.reviews.length} Reviews
             </p>
             <p className="flex items-center text-neutral-500 text-[12px] font-medium px-4 py-[2px] border border-neutral-100 rounded-full">
               IN STOCK
