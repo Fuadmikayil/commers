@@ -15,6 +15,8 @@ import { NavLink, Outlet, useParams } from "react-router-dom";
 import { getData } from "../hooks/useFetch";
 
 const ProductDetail = () => {
+  const [currentColorIndex, setCurrentColorIndex] = useState(0);
+  const [currentSizeIndex, setCurrentSizeIndex] = useState(0);
   const [imgCounter, setImgCounter] = useState(0);
   const { documentId } = useParams();
   const productDetailPageQuery = `query($id: ID!) {
@@ -50,8 +52,7 @@ const ProductDetail = () => {
     return acc + review.stars;
   }, 0);
   let reviewStartAverage = (sumOfStars / product.reviews.length).toFixed(2);
-  console.log(product.info);
-  
+
   return (
     <>
       <Header />
@@ -104,6 +105,7 @@ const ProductDetail = () => {
             {product.info.map((item, index) => {
               return (
                 <div
+                  onClick={() => setCurrentColorIndex(index)}
                   key={index}
                   className="cursor-pointer relative rounded-full w-8 h-8 border border-neutral-900 hover:border-neutral-300 transition"
                 >
@@ -119,13 +121,14 @@ const ProductDetail = () => {
             Select Size
           </p>
           <div className="flex gap-2 mb-8">
-            {product.info[0].sizes.map((item, index) => {
+            {product.info[currentColorIndex].sizes.map((item, index) => {
               return (
                 <p
+                onClick={() => setCurrentSizeIndex(index)}
                   key={index}
                   className="hover:bg-neutralWhite-100 transition cursor-pointer w-10 h-10 flex items-center justify-center border border-neutral-900 uppercase rounded text-[12px] font-medium text-neutral-900"
                 >
-              {  item.name}
+                  {item.name}
                 </p>
               );
             })}
@@ -139,7 +142,7 @@ const ProductDetail = () => {
               src={minusIcon}
               alt=""
             />
-            <p>1</p>
+            <p>{product.info[currentColorIndex].sizes[currentSizeIndex].count}</p>
             <img
               className="p-2 cursor-pointer hover:bg-neutralWhite-100 transition rounded"
               src={addIcon}
