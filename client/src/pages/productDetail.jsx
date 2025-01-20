@@ -18,7 +18,10 @@ const ProductDetail = () => {
   const [currentColorIndex, setCurrentColorIndex] = useState(0);
   const [currentSizeIndex, setCurrentSizeIndex] = useState(0);
   const [imgCounter, setImgCounter] = useState(0);
+  const [orderCount, setOrderCount] = useState(0);
+
   const { documentId } = useParams();
+
   const productDetailPageQuery = `query($id: ID!) {
   product(documentId: $id) {
     documentId
@@ -105,12 +108,16 @@ const ProductDetail = () => {
             {product.info.map((item, index) => {
               return (
                 <div
-                  onClick={() => setCurrentColorIndex(index)}
+                  onClick={() => {
+                    setCurrentSizeIndex(0);
+                    setCurrentColorIndex(index);
+                    setOrderCount(0);
+                  }}
                   key={index}
                   className={`cursor-pointer relative rounded-full w-8 h-8 border ${
                     currentColorIndex == index
                       ? "border-neutral-900"
-                      : "border-neutral-400"
+                      : "border-neutral-200"
                   } hover:border-neutral-300 transition`}
                 >
                   <div
@@ -128,9 +135,16 @@ const ProductDetail = () => {
             {product.info[currentColorIndex].sizes.map((item, index) => {
               return (
                 <p
-                  onClick={() => setCurrentSizeIndex(index)}
+                  onClick={() =>{
+                    setCurrentSizeIndex(index);
+                    setOrderCount(0);
+                  }}
                   key={index}
-                  className="hover:bg-neutralWhite-100 transition cursor-pointer w-10 h-10 flex items-center justify-center border border-neutral-900 uppercase rounded text-[12px] font-medium text-neutral-900"
+                  className={`hover:bg-neutralWhite-100 transition cursor-pointer w-10 h-10 flex items-center justify-center border uppercase rounded text-[12px] font-medium ${
+                    currentSizeIndex === index
+                      ? "border-neutral-900 text-neutral-900"
+                      : "border-neutral-400 text-neutral-200"
+                  }`}
                 >
                   {item.name}
                 </p>
@@ -145,16 +159,25 @@ const ProductDetail = () => {
               className="p-2 cursor-pointer hover:bg-neutralWhite-100 transition rounded"
               src={minusIcon}
               alt=""
+              onClick={() =>{
+                if(orderCount >0){
+                  setOrderCount( orderCount-1 )
+                }
+              }}
             />
             <p>
-              {product.info[currentColorIndex].sizes[currentSizeIndex].count > 0
-                ? 1
-                : 0}
+             {orderCount}
             </p>
             <img
               className="p-2 cursor-pointer hover:bg-neutralWhite-100 transition rounded"
               src={addIcon}
               alt=""
+              onClick={() =>{
+                if(orderCount < product.info[currentColorIndex].sizes[currentSizeIndex].count){
+                  setOrderCount( orderCount+1 )
+                }
+              }}
+
             />
           </div>
           <div className="flex gap-4 mb-3">
