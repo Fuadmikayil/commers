@@ -1,35 +1,42 @@
-import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import i18n from "../i18n";
 
-export const getData = (query,variables={}) => {
+export const getData = (query, variables = {}) => {
+  
+  const URL = "http://localhost:1337/graphql";
+
   const [data, setData] = useState(null);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const demo = async () => {
-      try {
-        setData(null);
-        setError(false);
-        setLoading(true);
-        const URL = "http://localhost:1337/graphql";
-
-        const response = await axios.post(URL, { query,variables });
-        const { data, error } = response;
-        if (error) throw new Error(error.message);
-        setData(data.data);
-      } catch (err) {
+  const demo = async () => {
+    try {
+      setData(null);
+      setError(false);
+      setLoading(true);
+      const response = await axios.post(URL, {
+        query,
+        variables,
+      });
+      const { data, errors } = response.data;
+      if (errors) {
         setError(true);
-        console.log(err.message);
-      } finally {
-        setLoading(false);
+        throw new Error(errors.message);
       }
-    };
+      setData(data);
+    } catch (err) {
+      setError(true);
+      console.log(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    const timeout = setTimeout(() => demo(), 2000);
-
-    return () => clearTimeout(timeout);
-  }, []);
+  useEffect(() => {
+    setLoading(true)
+    setTimeout(demo,2000);
+  }, [i18n.language]);
 
   return { data, error, loading };
 };

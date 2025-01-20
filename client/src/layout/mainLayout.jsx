@@ -9,11 +9,11 @@ import Loading from "../components/loading/loading";
 import { getData } from "../hooks/useFetch";
 
 const MainLayout = () => {
-    
+  const [layoutLoading, setLayoutLoading] = useState(false);
   const { i18n } = useTranslation();
 
   const layoutQuery = `
-     { header {
+     {  header(locale: "${i18n.language}") {
     lightModeIcon {
       url
     }
@@ -39,10 +39,42 @@ const MainLayout = () => {
       url
     }
     languages
-  } }`;
-  const { loading, data, error } = getData(layoutQuery);
+    } 
+    footerSub(locale: "${i18n.language}") {
+    buttonText
+    title
+    subtitle
+    inputPlaceholder
+  }
+    footerLink(locale: "${i18n.language}") {
+    logoImg {
+      url
+    }
+    logoText
+    sosialMediaImgs {
+      url
+    }
+    Links
+    paymentImgs {
+      url
+    }
+    paymentTitle
+    sosialMediaLinks
+    desciription
+  }
+    }`;
+  const { loading, data, errors } = getData(layoutQuery);
+
+  useEffect(() => {
+    setLayoutLoading(true);
+    setTimeout(() => {
+      setLayoutLoading(false);
+    }, 2000);
+  }, [i18n.language]);
+
+  if (layoutLoading) return <Loading />;
   if (loading) return <Loading />;
-  if (error) return <ErrorPage />;
+  if (errors) return <ErrorPage />;
 
   return (
     <>
@@ -53,7 +85,7 @@ const MainLayout = () => {
       />
       <Header data={data.header} />
       <Outlet />
-      <Footer />
+      <Footer subscribeData={data.footerSub} footerData={data.footerLink} />
     </>
   );
 };

@@ -47,11 +47,6 @@
       "type": "json",
       "required": false
     },
-    "feature": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::feature.feature"
-    },
     "inputIcon": {
       "type": "media",
       "multiple": false,
@@ -135,18 +130,18 @@
       }
     },
     "menuIcon": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images",
         "files"
       ],
-      "type": "media",
-      "multiple": false,
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      },
-      "required": true
+      }
     }
   }
 }

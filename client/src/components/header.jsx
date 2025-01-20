@@ -1,16 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import logo from "../assets/icons/logo/logo.svg";
-import menu from "../assets/icons/global/Menu.svg";
-import search from "../assets/icons/global/Search.svg";
-import cart from "../assets/icons/global/Cart.svg";
-import user from "../assets/icons/global/User.svg";
 import { changeLanguage } from "i18next";
 
 const Header = ({ data }) => {
   const { i18n, t } = useTranslation();
-  console.log(t("text"));
   return (
     <header>
       <div className="container flex items-center justify-between py-5">

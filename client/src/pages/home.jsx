@@ -10,11 +10,12 @@ import PopularProducts from "../components/popularProducts";
 import { getData } from "../hooks/useFetch";
 import Loading from "../components/loading/loading";
 import ErrorPage from "../components/error/error";
+import i18n from "../i18n";
 
 const HomePage = () => {
   const homePageQuery = `
  {
-  products {
+  products(locale: "${i18n.language}") {
     documentId
     name
     detail
@@ -24,7 +25,7 @@ const HomePage = () => {
       url
     }
   }
-  features {
+  features(locale: "${i18n.language}") {
     icon {
       url
     }
@@ -32,23 +33,27 @@ const HomePage = () => {
     subtitle
     title
   }
+  heroes(locale: "${i18n.language}") {
+    buttonHref
+    buttonText
+    subTitle
+    title
+    heroImg {
+      url
+    }
+  }
 }`;
   const { loading, data, error } = getData(homePageQuery);
-  if (loading) return <Loading/>;
-  if (error) return <ErrorPage/>;
+  if (loading) return <Loading />;
+  if (error) return <ErrorPage />;
 
-  const { products,features } = data;
+  const { products, features } = data;
+  console.log(data.fashionHero);
   
+
   return (
     <>
-     
-      <Hero
-        title="Fresh Arrivals Online"
-        subtitle="Discover Our Newest Collection Today."
-        btnText="View Collection"
-        btnHref=""
-        img={heroImgOnline}
-      />
+      <Hero data={data.heroes[0]} />
 
       <section>
         <div className="container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 py-8 gap-8">
@@ -64,13 +69,9 @@ const HomePage = () => {
         textAlign="center"
         products={products}
       />
-      <Hero
-        title="Browse Our Fashion Paradise!"
-        subtitle="Step into a world of style and explore our diverse collection of clothing categories."
-        btnText="Start Browsing"
-        btnHref=""
-        img={heroImgFashion}
-      />
+
+    <Hero data={data.heroes[1]} />
+
 
       <section className="my-24">
         <div className="flex items-center gap-6 justify-center">
@@ -87,7 +88,6 @@ const HomePage = () => {
           })}
         </div>
       </section>
-
     </>
   );
 };

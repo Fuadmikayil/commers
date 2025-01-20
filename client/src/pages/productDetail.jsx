@@ -10,6 +10,7 @@ import { NavLink, Outlet, useParams } from "react-router-dom";
 import { getData } from "../hooks/useFetch";
 import Loading from "../components/loading/loading";
 import ErrorPage from "../components/error/error";
+import ShareButton from "../components/shareButton";
 
 const ProductDetail = () => {
   const [currentColorIndex, setCurrentColorIndex] = useState(0);
@@ -79,7 +80,7 @@ const ProductDetail = () => {
             <h2 className="text-neutral-900 font-bold text-2xl">
               {product?.name}
             </h2>
-            <img src={shareIcon} alt="" />
+            <ShareButton className="cursor-pointer"/>
           </div>
           <div className="flex gap-2 item-center mb-6">
             <p className="bg-neutralWhite-100 rounded-full px-4 py-[2px] flex items-center gap-2">
