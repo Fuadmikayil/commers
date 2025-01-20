@@ -1,9 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Footer from "../components/footer";
-import Header from "../components/header";
-import PopularProducts from "../components/popularProducts";
-import { products } from "../data/products";
-import demoImg from "../assets/images/products/img.png";
 import shareIcon from "../assets/icons/global/Share.svg";
 import starIcon from "../assets/icons/global/Star.svg";
 import addIcon from "../assets/icons/global/Add.svg";
@@ -13,6 +8,8 @@ import emptyStarIcon from "../assets/icons/global/EmptyStar.svg";
 import moreIcon from "../assets/icons/global/More.svg";
 import { NavLink, Outlet, useParams } from "react-router-dom";
 import { getData } from "../hooks/useFetch";
+import Loading from "../components/loading/loading";
+import ErrorPage from "../components/error/error";
 
 const ProductDetail = () => {
   const [currentColorIndex, setCurrentColorIndex] = useState(0);
@@ -48,8 +45,8 @@ const ProductDetail = () => {
   const { loading, data, error } = getData(productDetailPageQuery, {
     id: documentId,
   });
-  if (loading) return <h1>loading</h1>;
-  if (error) return <h1>error</h1>;
+  if (loading) return <Loading />;
+  if (!data.product) return <ErrorPage/>;
   const { product } = data;
   let sumOfStars = product.reviews.reduce((acc, review) => {
     return acc + review.stars;
@@ -58,8 +55,6 @@ const ProductDetail = () => {
 
   return (
     <>
-      <Header />
-
       <section className="container flex gap-28 mb-44">
         <div className="relative flex-1 flex items-center justify-center bg-neutralWhite-100 h-[600px]">
           <img
@@ -135,7 +130,7 @@ const ProductDetail = () => {
             {product.info[currentColorIndex].sizes.map((item, index) => {
               return (
                 <p
-                  onClick={() =>{
+                  onClick={() => {
                     setCurrentSizeIndex(index);
                     setOrderCount(0);
                   }}
@@ -159,25 +154,25 @@ const ProductDetail = () => {
               className="p-2 cursor-pointer hover:bg-neutralWhite-100 transition rounded"
               src={minusIcon}
               alt=""
-              onClick={() =>{
-                if(orderCount >0){
-                  setOrderCount( orderCount-1 )
+              onClick={() => {
+                if (orderCount > 0) {
+                  setOrderCount(orderCount - 1);
                 }
               }}
             />
-            <p>
-             {orderCount}
-            </p>
+            <p>{orderCount}</p>
             <img
               className="p-2 cursor-pointer hover:bg-neutralWhite-100 transition rounded"
               src={addIcon}
               alt=""
-              onClick={() =>{
-                if(orderCount < product.info[currentColorIndex].sizes[currentSizeIndex].count){
-                  setOrderCount( orderCount+1 )
+              onClick={() => {
+                if (
+                  orderCount <
+                  product.info[currentColorIndex].sizes[currentSizeIndex].count
+                ) {
+                  setOrderCount(orderCount + 1);
                 }
               }}
-
             />
           </div>
           <div className="flex gap-4 mb-3">
@@ -220,7 +215,12 @@ const ProductDetail = () => {
             <span>Reviews</span>
           </NavLink>
         </div>
-        <Outlet />
+        <Outlet
+          context={{
+            reviews: product.reviews,
+            details: product.detail,
+          }}
+        />
       </section>
 
       {/*  <PopularProducts
@@ -229,7 +229,6 @@ const ProductDetail = () => {
         textAlign="left"
         products={products}
       />*/}
-      <Footer />
     </>
   );
 };

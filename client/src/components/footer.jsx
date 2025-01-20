@@ -1,18 +1,18 @@
-import React from 'react'
-import footerLogo from '../assets/icons/logo/footerLogo.svg';
-import githubImg from '../assets/icons/social/Github.svg';
-import instagramImg from '../assets/icons/social/Instagram.svg';
-import youtubeImg from '../assets/icons/social/Youtube.svg';
+import React from "react";
+import footerLogo from "../assets/icons/logo/footerLogo.svg";
+import githubImg from "../assets/icons/social/Github.svg";
+import instagramImg from "../assets/icons/social/Instagram.svg";
+import youtubeImg from "../assets/icons/social/Youtube.svg";
 
-import amexIcon from '../assets/icons/colored/Amex.svg';
-import mastercardIcon from '../assets/icons/colored/MasterCard.svg';
-import visaIcon from '../assets/icons/colored/Visa.svg';
+import amexIcon from "../assets/icons/colored/Amex.svg";
+import mastercardIcon from "../assets/icons/colored/MasterCard.svg";
+import visaIcon from "../assets/icons/colored/Visa.svg";
 
 const Footer = () => {
   return (
     <footer>
       <section className="bg-neutralWhite-100">
-        <div className="container py-16 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
+        <div className="container py-16  flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
           <div>
             <h2 className="text-neutral-800 text-3xl font-semibold mb-3">
               Join Our Newsletter
@@ -34,8 +34,8 @@ const Footer = () => {
         </div>
       </section>
 
-      <section>
-        <div className="container pl-4 md:pl-0 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 py-8 gap-8">
+      <section className="container">
+        <div className=" pl-4 md:pl-0 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 py-8 gap-8">
           <div className="flex flex-col items-start mr-8">
             <div className="flex gap-4 items-center">
               <div className="py-[9px] px-[14px] border border-neutral-100 rounded-md">
@@ -114,6 +114,6 @@ const Footer = () => {
       </section>
     </footer>
   );
-}
+};
 
-export default Footer
+export default Footer;

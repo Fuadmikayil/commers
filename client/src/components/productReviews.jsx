@@ -1,8 +1,11 @@
 import React from 'react';
 import starIcon from '../assets/icons/global/Star.svg';
 import emptyStarIcon from '../assets/icons/global/EmptyStar.svg';
+import { useOutletContext } from 'react-router-dom';
 
 const ProductReviews = () => {
+  const {reviews} = useOutletContext();
+  
   return (
     <div className="flex-1">
       <h2 className="font-semibold text-neutral-900 mb-6">Reviews</h2>
@@ -28,30 +31,35 @@ const ProductReviews = () => {
         </select>
       </div>
 
-      {[1, 2, 3].map((item) => {
+      {reviews.map((item,index) => {
         return (
-          <div className="pt-9 pb-7 pl-2 pr-4 flex gap-6">
+          <div key={index} className="pt-9 pb-7 pl-2 pr-4 flex gap-6">
             <div className="w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center">
               <h2 className="text-primary-900 text-sm uppercase">ED</h2>
             </div>
             <div className="flex-1">
               <h3 className="text-sm font-medium text-neutral-900 mb-[6px]">
-                Emily Davis
+               {reviews.author}
               </h3>
               <p className="mb-4 font-medium text-neutral-500 text-[12px]">
-                1 Week ago
+                {item.createdAt.split('T')[0]}
               </p>
               <p className="text-sm text-neutral-500">
-                This company always goes above and beyond to satisfy their
-                customers.
+              {
+                item.review
+              }
               </p>
             </div>
             <div className="flex gap-1">
-              <img className="w-5 h-5" src={starIcon} alt="" />
-              <img className="w-5 h-5" src={starIcon} alt="" />
-              <img className="w-5 h-5" src={starIcon} alt="" />
-              <img className="w-5 h-5" src={starIcon} alt="" />
-              <img className="w-5 h-5" src={emptyStarIcon} alt="" />
+              {
+                Array.from({length: item.stars}).map((star, index) => {
+                 return  <img key={index} className="w-5 h-5" src={starIcon} alt="" />
+                })
+              } {
+                Array.from({length: 5-item.stars}).map((star, index) => {
+                 return  <img key={index} className="w-5 h-5" src={emptyStarIcon} alt="" />
+                })
+              }
             </div>
           </div>
         );

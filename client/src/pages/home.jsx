@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import TopAds from "../components/topAds";
-import Header from "../components/header";
 import Hero from "../components/hero";
 import FeatureCard from "../components/featureCard";
 
@@ -8,9 +6,10 @@ import heroImgOnline from "../assets/images/heroImgOnline.svg";
 import heroImgFashion from "../assets/images/heroImgFashion.svg";
 
 import ProductCard from "../components/productCard";
-import Footer from "../components/footer";
 import PopularProducts from "../components/popularProducts";
 import { getData } from "../hooks/useFetch";
+import Loading from "../components/loading/loading";
+import ErrorPage from "../components/error/error";
 
 const HomePage = () => {
   const homePageQuery = `
@@ -35,18 +34,14 @@ const HomePage = () => {
   }
 }`;
   const { loading, data, error } = getData(homePageQuery);
-  if (loading) return <h1>loading</h1>;
-  if (error) return <h1>error</h1>;
+  if (loading) return <Loading/>;
+  if (error) return <ErrorPage/>;
+
   const { products,features } = data;
   
   return (
     <>
-      <TopAds
-        text="Get 25% OFF on your first order."
-        btnText="Order Now!"
-        btnHref=""
-      />
-      <Header />
+     
       <Hero
         title="Fresh Arrivals Online"
         subtitle="Discover Our Newest Collection Today."
@@ -93,7 +88,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      <Footer />
     </>
   );
 };
