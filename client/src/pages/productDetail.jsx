@@ -107,7 +107,11 @@ const ProductDetail = () => {
                 <div
                   onClick={() => setCurrentColorIndex(index)}
                   key={index}
-                  className="cursor-pointer relative rounded-full w-8 h-8 border border-neutral-900 hover:border-neutral-300 transition"
+                  className={`cursor-pointer relative rounded-full w-8 h-8 border ${
+                    currentColorIndex == index
+                      ? "border-neutral-900"
+                      : "border-neutral-400"
+                  } hover:border-neutral-300 transition`}
                 >
                   <div
                     style={{ backgroundColor: `#${item.color}` }}
@@ -124,7 +128,7 @@ const ProductDetail = () => {
             {product.info[currentColorIndex].sizes.map((item, index) => {
               return (
                 <p
-                onClick={() => setCurrentSizeIndex(index)}
+                  onClick={() => setCurrentSizeIndex(index)}
                   key={index}
                   className="hover:bg-neutralWhite-100 transition cursor-pointer w-10 h-10 flex items-center justify-center border border-neutral-900 uppercase rounded text-[12px] font-medium text-neutral-900"
                 >
@@ -142,7 +146,11 @@ const ProductDetail = () => {
               src={minusIcon}
               alt=""
             />
-            <p>{product.info[currentColorIndex].sizes[currentSizeIndex].count}</p>
+            <p>
+              {product.info[currentColorIndex].sizes[currentSizeIndex].count > 0
+                ? 1
+                : 0}
+            </p>
             <img
               className="p-2 cursor-pointer hover:bg-neutralWhite-100 transition rounded"
               src={addIcon}
