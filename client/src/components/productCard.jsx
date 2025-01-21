@@ -27,7 +27,7 @@ const ProductCard = ({ item }) => {
     >
       <button
         onClick={(e) => {
-          e.preventDefault(); // Prevent link navigation
+          e.preventDefault(); 
           toggleIsFavorite(item.documentId);
         }}
         className="h-[43px] w-[43px] border border-neutral-100 dark:border-neutral-800 bg-white dark:bg-neutral-900 rounded flex items-center justify-center absolute top-4 right-4"
@@ -60,7 +60,7 @@ const ProductCard = ({ item }) => {
         >
           {item.inStock ? "IN STOCK" : "OUT OF STOCK"}
         </p>
-        <p className="text-neutral-900 dark:text-neutral-400 text-sm"> {item.price}$</p>
+        <p className="text-neutral-900 dark:text-neutral-200 text-sm"> {item.price}$</p>
       </div>
     </Link>
   );

@@ -1,14 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
-const TopAds = ({text,btnText,btnHref }) => {
+const TopAds = ({data}) => {
   return (
     <header className="bg-neutral-900 py-2 flex justify-center items-center gap-1">
       <p className="text-neutralWhite-900 text-sm">
-        {text}
+        {data.text}
       </p>
-      <Link to={`/${btnHref}`} className="text-neutralWhite-900 text-sm border-b border-transparent hover:border-neutralWhite-900 transition">
-        {btnText}
+      <Link to={`/${data.btnHref}`} className="text-neutralWhite-900 text-sm border-b border-transparent hover:border-neutralWhite-900 transition">
+        {data.btnText}
       </Link>
     </header>
   );

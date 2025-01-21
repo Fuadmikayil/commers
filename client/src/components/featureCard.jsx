@@ -3,7 +3,7 @@ import React from "react";
 const FeatureCard = ({ item }) => {
   return (
     <div className="flex flex-col items-center md:items-start">
-      <div className="p-3 bg-neutralWhite-100 dark:bg-neutral-800 rounded-full transition-colors duration-300">
+      <div className="p-3 bg-neutralWhite-100 dark:bg-neutral-200 rounded-full transition-colors duration-300">
         <img
           className="w-6 h-6"
           src={`http://localhost:1337${item.icon.url}`}

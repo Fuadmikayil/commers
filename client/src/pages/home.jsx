@@ -74,15 +74,15 @@ const HomePage = () => {
 
 
       <section className="my-24">
-        <div className="flex items-center gap-6 justify-center">
-          <button className="rounded-2xl leading-6 px-4 py-[2px] border-neutral-100 text-neutral-900 text-[12px] font-medium border">
+        <div className="flex  items-center gap-6 justify-center">
+          <button className="rounded-2xl leading-6 px-4 py-[2px] border-neutral-100 dark:text-neutral-100 text-neutral-900 text-[12px] font-medium border">
             Featured
           </button>
-          <button className="rounded-2xl leading-6 px-4 py-[2px] text-neutral-500 text-[12px] font-medium">
+          <button className="rounded-2xl leading-6 px-4 py-[2px] text-neutral-500 text-[12px] dark:text-neutral-100 font-medium">
             Latest
           </button>
         </div>
-        <div className="container grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 py-8 gap-4 md:gap-8">
+        <div className="container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 py-8 gap-4 md:gap-8">
           {products.map((item, index) => {
             return <ProductCard item={item} key={index} />;
           })}

@@ -78,7 +78,7 @@ const ProductDetail = () => {
 
   return (
     <>
-      <section className="container flex gap-28 mb-44">
+      <section className=" flex-col lg:flex-row container flex gap-28 mb-44">
         <div className="relative flex-1 flex items-center justify-center bg-neutralWhite-100 h-[600px]">
           <img
             className="max-w-[90%] max-h-[90%]"
@@ -99,7 +99,7 @@ const ProductDetail = () => {
         </div>
         <div className="flex-1 pt-4">
           <div className="flex items-center justify-between mb-3">
-            <h2 className="text-neutral-900 font-bold text-2xl">
+            <h2 className="text-neutral-900 font-bold dark:text-neutral-100 text-2xl">
               {product?.name}
             </h2>
             <ShareButton className="cursor-pointer" />
@@ -109,17 +109,17 @@ const ProductDetail = () => {
               <img src={starIcon} alt="" />
               {reviewStartAverage} — {product?.reviews.length} Reviews
             </p>
-            <p className="flex items-center text-neutral-500 text-[12px] font-medium px-4 py-[2px] border border-neutral-100 rounded-full">
+            <p className="flex items-center text-neutral-500 text-[12px] font-medium px-4 py-[2px] border dark:text-neutral-100 border-neutral-100 rounded-full">
               IN STOCK
             </p>
           </div>
-          <h3 className="text-neutral-900 font-semibold text-lg mb-8 tracking-wider">
+          <h3 className="text-neutral-900 dark:text-neutral-100 font-semibold text-lg mb-8 tracking-wider">
             {product?.price}${" "}
-            <del className="text-neutral-300 text-sm">
+            <del className="text-neutral-300 dark:text-neutral-100 text-sm">
               {product?.beforePrice}$
             </del>
           </h3>
-          <p className="text-neutral-500 text-[12px] font-medium uppercase mb-[10px]">
+          <p className="text-neutral-500 text-[12px] dark:text-neutral-100 font-medium uppercase mb-[10px]">
             Available Colors
           </p>
           <div className="flex gap-[10px] items-center mb-6">
@@ -146,7 +146,7 @@ const ProductDetail = () => {
               );
             })}
           </div>
-          <p className="text-neutral-500 text-[12px] font-medium uppercase mb-[10px]">
+          <p className="text-neutral-500 dark:text-neutral-100 text-[12px] font-medium uppercase mb-[10px]">
             Select Size
           </p>
           <div className="flex gap-2 mb-8">
@@ -160,7 +160,7 @@ const ProductDetail = () => {
                   key={index}
                   className={`hover:bg-neutralWhite-100 transition cursor-pointer w-10 h-10 flex items-center justify-center border uppercase rounded text-[12px] font-medium ${
                     currentSizeIndex === index
-                      ? "border-neutral-900 text-neutral-900"
+                      ? "border-neutral1900 text-neutral-100"
                       : "border-neutral-400 text-neutral-200"
                   }`}
                 >
@@ -169,12 +169,12 @@ const ProductDetail = () => {
               );
             })}
           </div>
-          <p className="text-neutral-500 text-[12px] font-medium uppercase mb-[10px]">
+          <p className="text-neutral-500 text-[12px] dark:text-neutral-100 font-medium uppercase mb-[10px]">
             Quantity
           </p>
           <div className="mb-10 rounded border border-neutral-100 flex items-center justify-around max-w-40 h-11">
             <img
-              className="p-2 cursor-pointer hover:bg-neutralWhite-100 transition rounded"
+              className="p-2 cursor-pointer dark:text-neutral-100 hover:bg-neutralWhite-100 transition rounded"
               src={minusIcon}
               alt=""
               onClick={() => {
@@ -183,9 +183,9 @@ const ProductDetail = () => {
                 }
               }}
             />
-            <p>{orderCount}</p>
+            <p className="dark:text-neutral-100">{orderCount}</p>
             <img
-              className="p-2 cursor-pointer hover:bg-neutralWhite-100 transition rounded"
+              className="p-2 cursor-pointer hover:bg-neutralWhite-100  transition rounded"
               src={addIcon}
               alt=""
               onClick={() => {
@@ -199,18 +199,18 @@ const ProductDetail = () => {
             />
           </div>
           <div className="flex gap-4 mb-3">
-            <button className="bg-neutral-900 h-11 w-full max-w-72 rounded text-sm text-neutralWhite-900 font-medium">
+            <button className="bg-neutral-900 h-11 w-full max-w-72 dark:bg-neutral-100  rounded text-sm text-neutral-100 dark:text-neutral-600 font-medium">
               Add to card
             </button>
             <button
               onClick={() => toggleIsFavorite(product.documentId)}
               className="h-[43px] w-[43px] border border-neutral-100  rounded flex items-center justify-center "
             > 
-           { initialFavorites ? <FaHeart /> : <FaRegHeart />}
+           { initialFavorites ? <FaHeart fill="#ff0000" /> : <FaRegHeart fill="#808080" />}
              
             </button>
           </div>
-          <p className="text-neutral-500 text-[12px] font-medium">
+          <p className="text-neutral-500 text-[12px] dark:text-neutral-100 font-medium">
             — Free shipping on orders $100+
           </p>
         </div>
@@ -228,7 +228,7 @@ const ProductDetail = () => {
             }
           >
             <img src={moreIcon} alt="" />
-            <span>Details</span>
+            <span className="dark:text-neutral-200">Details</span>
           </NavLink>
           <NavLink
             to="reviews"
@@ -239,7 +239,7 @@ const ProductDetail = () => {
             }
           >
             <img src={emptyStarIcon} alt="" />
-            <span>Reviews</span>
+            <span  className="dark:text-neutral-200">Reviews</span>
           </NavLink>
         </div>
         <Outlet

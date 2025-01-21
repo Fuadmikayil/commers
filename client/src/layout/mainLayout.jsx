@@ -11,9 +11,13 @@ import { getData } from "../hooks/useFetch";
 const MainLayout = () => {
   const [layoutLoading, setLayoutLoading] = useState(false);
   const { i18n } = useTranslation();
-
   const layoutQuery = `
     {  
+       topadss(locale: "${i18n.language}") {
+        btnHref
+        btnText
+        text
+      } 
       header(locale: "${i18n.language}") {
         lightModeIcon { url }
         inputIcon { url }
@@ -75,12 +79,12 @@ const MainLayout = () => {
 
   return (
     <div className={`${darkMode ? "dark:bg-neutral-900" : ""}`}>
-      <TopAds
-        text={"Get 25% OFF on your first order."}
-        btnText={"Order Now"}
-        btnHref={"#"}
+      <TopAds data={data.topadss} />
+      <Header
+        setDarkMode={setDarkMode}
+        darkMode={darkMode}
+        data={data.header}
       />
-      <Header setDarkMode={setDarkMode} darkMode={darkMode} data={data.header} />
       <Outlet />
       <Footer subscribeData={data.footerSub} footerData={data.footerLink} />
     </div>
