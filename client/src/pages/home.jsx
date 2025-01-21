@@ -20,6 +20,7 @@ const HomePage = () => {
     name
     detail
     category
+    price
     beforePrice
     images {
       url
@@ -48,7 +49,6 @@ const HomePage = () => {
   if (error) return <ErrorPage />;
 
   const { products, features } = data;
-  console.log(data.fashionHero);
   
 
   return (

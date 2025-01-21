@@ -1,16 +1,18 @@
-import React from 'react'
-import ProductCard from './productCard';
+import React from "react";
+import ProductCard from "./productCard";
 
-const PopularProducts = ({title,subtitle, textAlign, products}) => {
+const PopularProducts = ({ title, subtitle, textAlign, products }) => {
   return (
-    <section className="my-24">
+    <section className="my-24 dark:bg-neutral-900 bg-white">
       <div className="container">
         <p
-          className={`text-${textAlign} text-neutral-300 text-[12px] font-medium mb-2`}
+          className={`text-${textAlign} text-neutral-300 dark:text-neutral-400 text-[12px] font-medium mb-2`}
         >
           {title}
         </p>
-        <h2 className={`text-${textAlign} text-neutral-900 text-2xl font-bold`}>
+        <h2
+          className={`text-${textAlign} text-neutral-900 dark:text-neutral-100 text-2xl font-bold`}
+        >
           {subtitle}
         </h2>
       </div>
@@ -21,6 +23,6 @@ const PopularProducts = ({title,subtitle, textAlign, products}) => {
       </div>
     </section>
   );
-}
+};
 
-export default PopularProducts
+export default PopularProducts;

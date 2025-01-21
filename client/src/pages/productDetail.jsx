@@ -11,14 +11,36 @@ import { getData } from "../hooks/useFetch";
 import Loading from "../components/loading/loading";
 import ErrorPage from "../components/error/error";
 import ShareButton from "../components/shareButton";
-
+import { FaRegHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 const ProductDetail = () => {
+  const { documentId } = useParams();
+  const initialFavorites = JSON.parse(
+    localStorage.getItem("favorites").includes(documentId)
+  );
   const [currentColorIndex, setCurrentColorIndex] = useState(0);
   const [currentSizeIndex, setCurrentSizeIndex] = useState(0);
   const [imgCounter, setImgCounter] = useState(0);
   const [orderCount, setOrderCount] = useState(0);
 
-  const { documentId } = useParams();
+  const [isFavorite, setIsFavorite] = useState(
+    localStorage.getItem("favorites")
+  );
+
+  const toggleIsFavorite = (item) => {
+    const favoritesString = localStorage.getItem("favorites");
+    const favoritesArr = favoritesString ? JSON.parse(favoritesString) : [];
+
+    if (favoritesArr.includes(item)) {
+      const filteredArr = favoritesArr.filter((favorite) => favorite !== item);
+      localStorage.setItem("favorites", JSON.stringify(filteredArr));
+      setIsFavorite(false);
+    } else {
+      setIsFavorite(true);
+      favoritesArr.push(item);
+      localStorage.setItem("favorites", JSON.stringify(favoritesArr));
+    }
+  };
 
   const productDetailPageQuery = `query($id: ID!) {
   product(documentId: $id) {
@@ -47,7 +69,7 @@ const ProductDetail = () => {
     id: documentId,
   });
   if (loading) return <Loading />;
-  if (!data.product) return <ErrorPage/>;
+  if (!data.product) return <ErrorPage />;
   const { product } = data;
   let sumOfStars = product.reviews.reduce((acc, review) => {
     return acc + review.stars;
@@ -80,7 +102,7 @@ const ProductDetail = () => {
             <h2 className="text-neutral-900 font-bold text-2xl">
               {product?.name}
             </h2>
-            <ShareButton className="cursor-pointer"/>
+            <ShareButton className="cursor-pointer" />
           </div>
           <div className="flex gap-2 item-center mb-6">
             <p className="bg-neutralWhite-100 rounded-full px-4 py-[2px] flex items-center gap-2">
@@ -180,8 +202,12 @@ const ProductDetail = () => {
             <button className="bg-neutral-900 h-11 w-full max-w-72 rounded text-sm text-neutralWhite-900 font-medium">
               Add to card
             </button>
-            <button className="h-[43px] w-[43px] border border-neutral-100 rounded flex items-center justify-center ">
-              <img src={heartIcon} />
+            <button
+              onClick={() => toggleIsFavorite(product.documentId)}
+              className="h-[43px] w-[43px] border border-neutral-100  rounded flex items-center justify-center "
+            > 
+           { initialFavorites ? <FaHeart /> : <FaRegHeart />}
+             
             </button>
           </div>
           <p className="text-neutral-500 text-[12px] font-medium">
