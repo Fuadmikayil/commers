@@ -20,7 +20,7 @@ const Footer = ({ subscribeData, footerData }) => {
               placeholder={subscribeData.inputPlaceholder}
               type="text"
             />
-            <button className="bg-neutral-900 dark:bg-neutral-100 rounded px-6 py-2 text-neutralWhite-600  text-sm font-medium">
+            <button className="bg-neutral-900 dark:bg-neutral-100 rounded px-6 py-2 text-neutralWhite-900 dark:text-neutral-950  text-sm font-medium">
               {subscribeData.buttonText}
             </button>
           </div>

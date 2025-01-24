@@ -47,9 +47,12 @@ const ProductDetail = () => {
       dispatch(
         addNewItemToBasket({
           id: product.documentId,
+          name: product.name,
           color: product.info[currentColorIndex].color,
           size: product.info[currentColorIndex].sizes[currentSizeIndex].name,
           count: orderCount,
+          price: product.price,
+          imgUrl: product.images[0].url,
         })
       );
     }else{
