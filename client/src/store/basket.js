@@ -1,23 +1,16 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 export const basket = createSlice({
-  name: 'basket',
+  name: "basket",
   initialState: {
-    value: [
-      {
-        id: 1,
-        color: 'red',
-        size: 'XL',
-        count: 1
-      }
-    ]
+    value: [],
   },
   reducers: {
     addNewItemToBasket: (state, action) => {
       const newArr = state.value.concat(action.payload);
       state.value = newArr;
-    }
-  }
+    },
+  },
 });
 
 export const { addNewItemToBasket } = basket.actions;

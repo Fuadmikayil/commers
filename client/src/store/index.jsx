@@ -1,8 +1,8 @@
-import { configureStore } from '@reduxjs/toolkit'
-import { basket } from './basket'
+import { configureStore } from '@reduxjs/toolkit';
+import basketReducer from './basket';
 
-export default  configureStore({
-    reducer: {
-        basket: basket
-    }
-})
+export default configureStore({
+  reducer: {
+    basket: basketReducer, 
+  },
+});

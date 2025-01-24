@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import shareIcon from "../assets/icons/global/Share.svg";
 import starIcon from "../assets/icons/global/Star.svg";
 import addIcon from "../assets/icons/global/Add.svg";
 import minusIcon from "../assets/icons/global/Minus.svg";
-import heartIcon from "../assets/icons/global/Heart.svg";
 import emptyStarIcon from "../assets/icons/global/EmptyStar.svg";
 import moreIcon from "../assets/icons/global/More.svg";
 import { NavLink, Outlet, useParams } from "react-router-dom";
@@ -13,7 +11,10 @@ import ErrorPage from "../components/error/error";
 import ShareButton from "../components/shareButton";
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { addNewItemToBasket } from "../store/basket";
 const ProductDetail = () => {
+  const dispatch = useDispatch();
   const { documentId } = useParams();
   const initialFavorites = JSON.parse(
     localStorage.getItem("favorites").includes(documentId)
@@ -41,7 +42,20 @@ const ProductDetail = () => {
       localStorage.setItem("favorites", JSON.stringify(favoritesArr));
     }
   };
-
+  const addToCardHandle = (product ) => {
+    if (orderCount > 0) {
+      dispatch(
+        addNewItemToBasket({
+          id: product.documentId,
+          color: product.info[currentColorIndex].color,
+          size: product.info[currentColorIndex].sizes[currentSizeIndex].name,
+          count: orderCount,
+        })
+      );
+    }else{
+      alert("Please enter product count") 
+    }
+  };
   const productDetailPageQuery = `query($id: ID!) {
   product(documentId: $id) {
     documentId
@@ -199,15 +213,21 @@ const ProductDetail = () => {
             />
           </div>
           <div className="flex gap-4 mb-3">
-            <button className="bg-neutral-900 h-11 w-full max-w-72 dark:bg-neutral-100  rounded text-sm text-neutral-100 dark:text-neutral-600 font-medium">
+            <button
+              onClick={() => addToCardHandle(product)}
+              className="bg-neutral-900 h-11 w-full max-w-72 dark:bg-neutral-100  rounded text-sm text-neutral-100 dark:text-neutral-600 font-medium"
+            >
               Add to card
             </button>
             <button
               onClick={() => toggleIsFavorite(product.documentId)}
               className="h-[43px] w-[43px] border border-neutral-100  rounded flex items-center justify-center "
-            > 
-           { initialFavorites ? <FaHeart fill="#ff0000" /> : <FaRegHeart fill="#808080" />}
-             
+            >
+              {initialFavorites ? (
+                <FaHeart fill="#ff0000" />
+              ) : (
+                <FaRegHeart fill="#808080" />
+              )}
             </button>
           </div>
           <p className="text-neutral-500 text-[12px] dark:text-neutral-100 font-medium">
@@ -239,7 +259,7 @@ const ProductDetail = () => {
             }
           >
             <img src={emptyStarIcon} alt="" />
-            <span  className="dark:text-neutral-200">Reviews</span>
+            <span className="dark:text-neutral-200">Reviews</span>
           </NavLink>
         </div>
         <Outlet

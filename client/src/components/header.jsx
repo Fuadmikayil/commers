@@ -2,8 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { changeLanguage } from "i18next";
+import { useDispatch, useSelector } from "react-redux";
 
 const Header = ({ data, setDarkMode, darkMode }) => {
+  const value = useSelector((state) => state.basket.value);
+
   const { i18n, t } = useTranslation();
 
   return (
@@ -55,11 +58,20 @@ const Header = ({ data, setDarkMode, darkMode }) => {
             src={`http://localhost:1337${data.userIcon.url}`}
             alt="User"
           />
-          <img
-            className="w-6 h-6 cursor-pointer"
-            src={`http://localhost:1337${data.basketIcon.url}`}
-            alt="Cart"
-          />
+          <Link to={"/my-basket"} className="relative cursor-pointer">
+            <img
+              className="w-6 h-6 cursor-pointer"
+              src={`http://localhost:1337${data.basketIcon.url}`}
+              alt="Cart"
+            />
+            {value.length > 0 && (
+              <div className="absolute -top-2 -right-2 w-5 h-5 flex items-center justify-center rounded-full bg-neutral-950">
+                <span className="text-white font-bold text-[11px]">
+                  {value.length}
+                </span>
+              </div>
+            )}
+          </Link>
           <img
             className="w-6 h-6 cursor-pointer lg:hidden"
             src={`http://localhost:1337${data.menuIcon.url}`}

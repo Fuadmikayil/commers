@@ -4,6 +4,7 @@ import ProductDetail from "../pages/productDetail";
 import ProductDetailInfo from "../components/productDetailInfo";
 import ProductReviews from "../components/productReviews";
 import MainLayout from "../layout/mainLayout";
+import MyBasketPage from "../pages/myBasketPage";
 
 export const routes = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ export const routes = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
+      },
+      {
+        path: "/my-basket",
+        element: <MyBasketPage />,
       },
       {
         path: "/products/:documentId",
