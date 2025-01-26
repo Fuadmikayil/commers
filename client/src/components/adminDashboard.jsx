@@ -6,8 +6,8 @@ import imgDoughnutChart from "../assets/images/admin/DoughnutChart.svg";
 
 const AdminDashboard = () => {
   return (
-    <section className="w-full">
-      <section className="flex gap-6 justify-around bg-neutral-50 w-full p-4">
+    <section className="w-full flex flex-col gap-6 bg-neutral-50 p-4">
+      <section className="flex gap-6 justify-around  w-full ">
         <div className="w-[30%] h-[170px] bg-white p-4 rounded-xl flex flex-col  justify-between">
           <div className="flex justify-between items-center">
             <div>
@@ -51,7 +51,7 @@ const AdminDashboard = () => {
           />
         </div>
       </section>
-      <section className="flex gap-6 justify-around bg-neutral-50 w-full">
+      <section className="flex gap-6 justify-around w-full">
         <div className="w-[30%] bg-white rounded-xl flex flex-col  justify-between">
           <div className="p-6  border-b-2 border-gray-200">
             <h1 className="font-bold text-xl">Best Selling</h1>
@@ -85,19 +85,53 @@ const AdminDashboard = () => {
             </div>
           </div>
         </div>
-        <div className="w-[65%] h-56 bg-white rounded-xl flex flex-col  justify-between">
-            <div className="flex items-center p-6 gap-4">
-                <p>Recent Orders</p>
-                <button className="bg-gray-50 px-4 py-2 rounded-full text-sm w-[100px]">View All</button>
+        <div className="w-[65%]  bg-white rounded-xl flex flex-col  ">
+          <div className="flex items-center p-6 gap-4">
+            <p>Recent Orders</p>
+            <button className="bg-gray-50 px-4 py-2 rounded-full text-sm w-[100px]">
+              View All
+            </button>
+          </div>
+          <div className="">
+            <tr className="flex justify-between p-4 border-y-2 border-gray-200 text-gray-400 tracking-wide ">
+              <th className="font-medium">Item</th>
+              <th className="font-medium">Date</th>
+              <th className="font-medium">Total</th>
+              <th className="font-medium">Status</th>
+            </tr>
+            <div className="flex flex-col gap-4 px-4 mt-4">
+              <tr className="flex justify-between p-4 ">
+                <td>Mens Black T-Shirts</td>
+                <td>20 Mar, 2023</td>
+                <td>$75.00</td>
+                <td>Processing</td>
+              </tr>{" "}
+              <tr className="flex justify-between p-4 ">
+                <td>Mens Black T-Shirts</td>
+                <td>20 Mar, 2023</td>
+                <td>$75.00</td>
+                <td>Processing</td>
+              </tr>{" "}
+              <tr className="flex justify-between p-4 ">
+                <td>Mens Black T-Shirts</td>
+                <td>20 Mar, 2023</td>
+                <td>$75.00</td>
+                <td>Processing</td>
+              </tr>{" "}
+              <tr className="flex justify-between p-4 ">
+                <td>Mens Black T-Shirts</td>
+                <td>20 Mar, 2023</td>
+                <td>$75.00</td>
+                <td>Processing</td>
+              </tr>{" "}
+              <tr className="flex justify-between p-4 ">
+                <td>Mens Black T-Shirts</td>
+                <td>20 Mar, 2023</td>
+                <td>$75.00</td>
+                <td>Processing</td>
+              </tr>
             </div>
-            <div  className="border-y-2 border-gray-200">
-                <tr className="flex justify-between p-4 text-gray-400 tracking-wide ">
-                    <th className="font-medium">Item</th>
-                    <th className="font-medium">Date</th>
-                    <th className="font-medium">Total</th>
-                    <th className="font-medium">Status</th>
-                </tr>
-            </div>
+          </div>
         </div>
       </section>
     </section>
