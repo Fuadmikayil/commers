@@ -7,6 +7,7 @@ import MainLayout from "../layout/mainLayout";
 import MyBasketPage from "../pages/myBasketPage";
 import AdminPage from "../pages/adminPage";
 import AdminDashboard from "../components/adminDashboard";
+import AdminProducts from "../components/adminProducts";
 
 export const routes = createBrowserRouter([
   {
@@ -44,8 +45,8 @@ export const routes = createBrowserRouter([
             element: <AdminDashboard/>,
           },
           {
-            path: "reviews",
-            element: <ProductReviews />,
+            path: "products",
+            element: <AdminProducts />,
           },
         ],
       },

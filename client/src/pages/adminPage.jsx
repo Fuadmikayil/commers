@@ -21,7 +21,7 @@ const AdminPage = () => {
             <img src={Dashboard} />
             <span>Dashboard</span>
           </Link>
-          <Link className="bg-neutral-50 w-40 px-3 py-2 rounded-xl flex items-center gap-2">
+          <Link to={"products"} className="bg-neutral-50 w-40 px-3 py-2 rounded-xl flex items-center gap-2">
             <img src={Product}   />
             <span> Products </span>
           </Link>
