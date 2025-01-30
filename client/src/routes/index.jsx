@@ -9,6 +9,7 @@ import AdminPage from "../pages/adminPage";
 import AdminDashboard from "../components/adminDashboard";
 import AdminProducts from "../components/adminProducts";
 import AdminProductAdd from "../components/adminProductAdd";
+import AdminOrder from "../components/adminOrder";
 
 export const routes = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ export const routes = createBrowserRouter([
           {
             path: "productAdd",
             element: <AdminProductAdd />,
+          },
+          {
+            path: "order",
+            element: <AdminOrder />,
           },
         ],
       },
