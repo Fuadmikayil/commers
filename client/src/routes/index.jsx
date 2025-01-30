@@ -8,6 +8,7 @@ import MyBasketPage from "../pages/myBasketPage";
 import AdminPage from "../pages/adminPage";
 import AdminDashboard from "../components/adminDashboard";
 import AdminProducts from "../components/adminProducts";
+import AdminProductAdd from "../components/adminProductAdd";
 
 export const routes = createBrowserRouter([
   {
@@ -42,11 +43,15 @@ export const routes = createBrowserRouter([
         children: [
           {
             path: "dashboard",
-            element: <AdminDashboard/>,
+            element: <AdminDashboard />,
           },
           {
             path: "products",
             element: <AdminProducts />,
+          },
+          {
+            path: "productAdd",
+            element: <AdminProductAdd />,
           },
         ],
       },

@@ -2,15 +2,20 @@ import React from "react";
 import { CiSearch } from "react-icons/ci";
 import { BiSortAlt2 } from "react-icons/bi";
 import product1 from "../assets/images/admin/product1.svg";
+import { Link, Outlet } from "react-router-dom";
 const AdminProducts = () => {
   return (
     <div className="w-full  bg-white rounded-xl flex flex-col  ">
       <div className="flex items-center justify-between p-6 gap-4">
         <p className="text-xl tracking-wide font-semibold">Products</p>
         <div className="flex gap-4  ">
-          <button className="bg-black text-white px-6 py-3 rounded-lg text-sm">
+          <Link
+            to="/admin/productAdd"
+            className="bg-black text-white px-6 py-3 rounded-lg text-sm"
+          >
             Add Product
-          </button>
+          </Link>
+
           <div className=" p-2 border rounded-md border-gray-300 flex items-center gap-2">
             <label htmlFor="search">
               <CiSearch className="scale-150" />
@@ -72,6 +77,7 @@ const AdminProducts = () => {
           </tr>
         </div>
       </div>
+      <Outlet/>
     </div>
   );
 };
