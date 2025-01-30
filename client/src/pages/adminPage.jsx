@@ -17,21 +17,27 @@ const AdminPage = () => {
           </h1>
         </Link>
         <section className="flex flex-col gap-4">
-          <Link to={"dashboard"} className="bg-neutral-50 w-40 px-3 py-2 rounded-xl flex items-center gap-2">
+          <Link
+            to={"dashboard"}
+            className="bg-neutral-50 w-40 px-3 py-2 rounded-xl flex items-center gap-2"
+          >
             <img src={Dashboard} />
             <span>Dashboard</span>
           </Link>
-          <Link to={"products"} className="bg-neutral-50 w-40 px-3 py-2 rounded-xl flex items-center gap-2">
-            <img src={Product}   />
+          <Link
+            to={"products"}
+            className="bg-neutral-50 w-40 px-3 py-2 rounded-xl flex items-center gap-2"
+          >
+            <img src={Product} />
             <span> Products </span>
           </Link>
           <Link className="bg-neutral-50 w-40 px-3 py-2 rounded-xl flex items-center gap-2">
-            <img src={Users} className="scale-125"  />
+            <img src={Users} className="scale-125" />
 
             <span>Orders</span>
           </Link>
           <Link className="bg-neutral-50 w-40 px-3 py-2 rounded-xl flex items-center gap-2">
-          <img src={Cart} alt="" />
+            <img src={Cart} alt="" />
             <span>Customers</span>
           </Link>
           <Link className="bg-neutral-50 w-40 px-3 py-2 rounded-xl flex items-center gap-2">
@@ -44,8 +50,7 @@ const AdminPage = () => {
           </Link>
         </section>
       </section>
-      <Outlet/>
-
+      <Outlet />
     </section>
   );
 };
