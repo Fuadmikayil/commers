@@ -35,15 +35,15 @@ const AdminPage = () => {
             <img src={Users} className="scale-125" />
             <span>Orders</span>
           </Link>
-          <Link className="bg-neutral-50 w-40 px-3 py-2 rounded-xl flex items-center gap-2">
+          <Link to={"customers"} className="bg-neutral-50 w-40 px-3 py-2 rounded-xl flex items-center gap-2">
             <img src={Cart} alt="" />
             <span>Customers</span>
           </Link>
-          <Link className="bg-neutral-50 w-40 px-3 py-2 rounded-xl flex items-center gap-2">
+          <Link to={"reviews"} className="bg-neutral-50 w-40 px-3 py-2 rounded-xl flex items-center gap-2">
             <img src={EmptyStar} alt="" />
             <span>Reviews</span>
           </Link>
-          <Link className="bg-neutral-50 w-40 px-3 py-2 rounded-xl flex items-center gap-2">
+          <Link to={"settings"} className="bg-neutral-50 w-40 px-3 py-2 rounded-xl flex items-center gap-2">
             <img src={Settings} alt="" srcset="" />
             <span>Settings</span>
           </Link>
