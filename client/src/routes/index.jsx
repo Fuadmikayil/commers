@@ -15,6 +15,7 @@ import AdminReviews from "../components/adminReviews";
 import AdminSettings from "../components/adminSettings";
 import Categories from "../pages/categories";
 import AboutPage from "../pages/about";
+import ContactPage from "../pages/contact";
 
 export const routes = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ export const routes = createBrowserRouter([
       {
         path: "/about",
         element: <AboutPage  />,
+      },
+      {
+        path: "/contact",
+        element: <ContactPage  />,
       },
       {
         path: "/category",
