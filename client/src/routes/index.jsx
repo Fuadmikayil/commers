@@ -14,6 +14,7 @@ import AdminCustomers from "../components/adminCustomers";
 import AdminReviews from "../components/adminReviews";
 import AdminSettings from "../components/adminSettings";
 import Categories from "../pages/categories";
+import AboutPage from "../pages/about";
 
 export const routes = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ export const routes = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
+      },
+      {
+        path: "/about",
+        element: <AboutPage  />,
       },
       {
         path: "/category",
