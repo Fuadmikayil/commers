@@ -2,7 +2,6 @@
 import React from "react";
 import { CiSearch } from "react-icons/ci";
 import { BiSortAlt2 } from "react-icons/bi";
-import product1 from "../assets/images/admin/product1.svg";
 import { Link, Outlet } from "react-router-dom";
 const AdminReviews = () => {
   return (

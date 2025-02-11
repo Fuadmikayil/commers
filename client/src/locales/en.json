@@ -1,7 +1,5 @@
 {
-    "text": "English",
-    "Home": "Home",
-    "Categories": "Categories",
-    "About": "About",
-    "Contact": "Contact"
-  }
+  "price": "Qiymet",
+  "size": "Ölçü",
+  "count": "Say"
+}
