@@ -1,4 +1,29 @@
+import ErrorPage from "../components/error/error";
+import Loading from "../components/loading/loading";
+import { getData } from "../hooks/useFetch";
+import i18n from "../i18n";
 
+export default function AboutPage() {
+  const AboutPageQuery = `
+  {
+   aboutUs(locale: "${i18n.language}") {
+     SubTitle
+     Title
+     buttonText
+     PaymentTitle
+     PaymentSubTitle
+     GuaranteeTitle
+     GuaranteeSubTitle
+     ShippingTitle
+     ShippingSubTitle
+     Commitment
+   }
+ }`;
+  const { loading, data, error } = getData(AboutPageQuery);
+  if (loading) return <Loading />;
+  if (error) return <ErrorPage />;
+
+  const { aboutUs } = data;
   return (
     <div className="relative min-h-screen bg-neutral-100 text-neutralWhite-900 flex items-center justify-center p-8">
       <div
