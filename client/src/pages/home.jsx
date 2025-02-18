@@ -2,9 +2,6 @@ import React, { useEffect, useState } from "react";
 import Hero from "../components/hero";
 import FeatureCard from "../components/featureCard";
 
-import heroImgOnline from "../assets/images/heroImgOnline.svg";
-import heroImgFashion from "../assets/images/heroImgFashion.svg";
-
 import ProductCard from "../components/productCard";
 import PopularProducts from "../components/popularProducts";
 import { getData } from "../hooks/useFetch";
@@ -43,13 +40,13 @@ const HomePage = () => {
       url
     }
   }
+  
 }`;
   const { loading, data, error } = getData(homePageQuery);
   if (loading) return <Loading />;
   if (error) return <ErrorPage />;
 
   const { products, features } = data;
-  
 
   return (
     <>
@@ -70,8 +67,7 @@ const HomePage = () => {
         products={products}
       />
 
-    <Hero data={data.heroes[1]} />
-
+      <Hero data={data.heroes[1]} />
 
       <section className="my-24">
         <div className="flex  items-center gap-6 justify-center">
